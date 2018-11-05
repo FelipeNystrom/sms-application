@@ -1,7 +1,20 @@
-const nexmo = require('./nexmo_config');
+const express = require('express');
+const server = express();
+const port = process.env.PORT || 7000;
 
-const from = 'bbdk';
-const to = '46736672711';
-const text = 'det här är det första vi skickar som prov';
+server.use(express.json());
+server.use(express.urlencoded());
 
-// nexmo.message.sendSms(from, to, text, console.log);
+if (process.env.NODE_ENV === 'production') {
+  server.use(express.static(path.join(__dirname, 'client/build')));
+  // Anything that doesn't match the above, send back index.html
+  server.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+  });
+} else {
+  server.use(express.static(path.join(__dirname, 'public')));
+}
+
+server.listen(port, () => {
+  console.log(`Server running on ${port}`);
+});
