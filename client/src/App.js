@@ -9,13 +9,11 @@ class App extends Component {
 
   _onReady = e => {
     e.target.playVideo();
-  };
-
-  // make video loop before ending
-  _beforeEnding = e => {
-    if (e.played >= 0.99) {
-      this.player.seekTo(0);
-    }
+    // make video loop before ending
+    setInterval(() => {
+      e.target.seekTo(0);
+      console.log('looped');
+    }, 58 * 1000);
   };
 
   handleChange = e => {
@@ -51,7 +49,7 @@ class App extends Component {
           <div className="content">
             <div className="title">Välkommen till den hemliga festen</div>
 
-            <form className="apply" onSubmit>
+            <form className="apply" onSubmit={this.handleSubmit}>
               <div className="row">
                 <label>Telefonnummer:</label>
                 <input
@@ -72,7 +70,6 @@ class App extends Component {
                 opts={videoOptions}
                 className="video-iframe"
                 onReady={this._onReady}
-                onProgress={this._beforeEnding}
               />
             </div>
           </div>

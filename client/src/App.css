@@ -114,13 +114,26 @@
 }
 
 @media (min-width: 1024px) {
+  .content {
+    width: 50%;
+  }
+
+  .title {
+    font-size: 220%;
+  }
+
   .row {
     flex-direction: row;
   }
 
+  .row label {
+    font-size: 170%;
+  }
+
   .row input,
   .row label {
-    padding: 2%;
+    font-size: 150%;
+    padding: 1% 0;
   }
 
   .apply label,
@@ -129,11 +142,12 @@
   }
 
   .apply input[type='submit'] {
-    margin: 2rem 0;
-    flex: 3;
+    margin: 1rem 0;
+    font-size: 190%;
   }
 
   .apply input[type='text'] {
     margin-left: 1rem;
+    flex: 3;
   }
 }
