@@ -4,7 +4,7 @@ const path = require('path');
 const port = process.env.PORT || 7000;
 
 server.use(express.json());
-server.use(express.urlencoded());
+server.use(express.urlencoded({ extended: false }));
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(path.join(__dirname, 'client/build')));

@@ -48,12 +48,15 @@
 .row input,
 .row label {
   padding: 2%;
-  font-size: 80%;
+  font-size: 70%;
   margin: 0.5rem 0;
   border: none;
+  border-bottom: 0.1rem solid hsla(0, 0%, 100%, 0);
+  transition: border-bottom 300ms ease-in-out;
 }
 
-.row input {
+.row input:active,
+.row input:hover {
   border-bottom: 0.1rem solid hsla(0, 0%, 100%, 0.2);
 }
 
@@ -67,6 +70,13 @@
   margin: 1rem 0;
   padding: 4%;
   border: 0.1rem solid hsla(0, 0%, 100%, 0.6);
+  transition: all 400ms ease-in-out;
+  font-weight: bold;
+}
+
+.apply input[type='submit']:hover {
+  background-color: hsla(0, 0%, 100%, 0.6);
+  color: hsl(0, 0%, 5%);
 }
 
 .video-background {
@@ -132,18 +142,18 @@
 
   .row input,
   .row label {
-    font-size: 150%;
-    padding: 1% 0;
+    font-size: 120%;
+    padding: 2% 0;
   }
 
   .apply label,
-  .apply input[type='submit'] {
+  .apply input {
     flex: 1;
   }
 
   .apply input[type='submit'] {
     margin: 1rem 0;
-    font-size: 190%;
+    font-size: 150%;
   }
 
   .apply input[type='text'] {
