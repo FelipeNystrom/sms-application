@@ -27,5 +27,6 @@ module.exports = async phonenumber => {
     telefonnummer: phonenumber
   };
   const insert = await promisify(sheet.addRow)(insertNewRow);
+  console.log(typeof insert);
   return insert;
 };

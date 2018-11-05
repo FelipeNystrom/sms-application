@@ -1,10 +1,13 @@
 const express = require('express');
 const server = express();
 const path = require('path');
+const cors = require('cors');
 const port = process.env.PORT || 7000;
+const mountRoutes = require('./routes');
 
+server.use(cors());
 server.use(express.json());
-server.use(express.urlencoded({ extended: false }));
+server.use(express.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(path.join(__dirname, 'client/build')));
@@ -15,6 +18,8 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   server.use(express.static(path.join(__dirname, 'public')));
 }
+
+mountRoutes(server);
 
 server.listen(port, () => {
   console.log(`Server running on ${port}`);

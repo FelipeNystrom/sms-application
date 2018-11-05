@@ -4,7 +4,10 @@ import './App.css';
 
 class App extends Component {
   state = {
-    phonenumberInput: ''
+    phonenumberInput: '',
+    loading: false,
+    errorMsg: '',
+    successMsg: ''
   };
 
   _onReady = e => {
@@ -26,9 +29,25 @@ class App extends Component {
     const { phonenumberInput } = this.state;
     const opts = {
       method: 'POST',
-      body: JSON.stringify(phonenumberInput)
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ phoneNumber: phonenumberInput })
     };
-    fetch('/api/new/number', opts);
+    fetch('http://localhost:7000/api/new/number', opts)
+      .then(res => {
+        if (res.ok) {
+          this.setState({
+            phonenumberInput: '',
+            successMsg:
+              'Tack för din anmälan! Du kommer få ett sms av oss när det är dags!'
+          });
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        this.setState({ errorMsg: 'Ojdå! Något har gått fel. Prova igen!' });
+      });
   };
 
   render() {
@@ -57,7 +76,7 @@ class App extends Component {
                   name="phonenumberInput"
                   value={phonenumberInput}
                   onChange={this.handleChange}
-                  pattern="^[0-9]+$"
+                  pattern="\d{10,11}"
                 />
               </div>
               <input type="submit" value="anmäl mig" />
