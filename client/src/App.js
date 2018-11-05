@@ -7,13 +7,31 @@ class App extends Component {
     phonenumberInput: ''
   };
 
-  _onReady(event) {
-    event.target.playVideo();
-  }
+  _onReady = e => {
+    e.target.playVideo();
+  };
 
-  _onEnd(event) {
-    event.target.playVideo();
-  }
+  // make video loop before ending
+  _beforeEnding = e => {
+    if (e.played >= 0.99) {
+      this.player.seekTo(0);
+    }
+  };
+
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { phonenumberInput } = this.state;
+    const opts = {
+      method: 'POST',
+      body: JSON.stringify(phonenumberInput)
+    };
+    fetch('/api/new/number', opts);
+  };
 
   render() {
     const videoOptions = {
@@ -31,9 +49,20 @@ class App extends Component {
       <Fragment>
         <div className="wrapper">
           <div className="content">
-            <div className="title" />
-            <form onSubmit>
-              <input />
+            <div className="title">Välkommen till den hemliga festen</div>
+
+            <form className="apply" onSubmit>
+              <div className="row">
+                <label>Telefonnummer:</label>
+                <input
+                  type="text"
+                  name="phonenumberInput"
+                  value={phonenumberInput}
+                  onChange={this.handleChange}
+                  pattern="^[0-9]+$"
+                />
+              </div>
+              <input type="submit" value="anmäl mig" />
             </form>
           </div>
           <div className="video-background">
@@ -43,7 +72,7 @@ class App extends Component {
                 opts={videoOptions}
                 className="video-iframe"
                 onReady={this._onReady}
-                onEnd={this._onEnd}
+                onProgress={this._beforeEnding}
               />
             </div>
           </div>

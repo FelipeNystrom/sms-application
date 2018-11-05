@@ -6,15 +6,67 @@
   right: 0;
   left: 0;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 35%;
+  color: hsl(0, 0%, 100%);
 }
 
 .title {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  font-size: 90%;
+  margin-bottom: 2rem;
 }
 
 .apply {
+  display: flex;
+  flex-direction: column;
+}
+
+.apply input {
+  color: hsl(0, 0%, 100%);
+  background-color: transparent;
+  border-style: solid;
+}
+
+.row {
+  min-height: 2rem;
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0;
+}
+
+.row input,
+.row label {
+  padding: 2%;
+  font-size: 80%;
+  margin: 0.5rem 0;
+  border: none;
+}
+
+.row input {
+  border-bottom: 0.1rem solid hsla(0, 0%, 100%, 0.2);
+}
+
+.row label {
+  text-align: center;
+}
+
+.apply input[type='submit'] {
+  text-transform: uppercase;
+  font-size: 70%;
+  margin: 1rem 0;
+  padding: 4%;
+  border: 0.1rem solid hsla(0, 0%, 100%, 0.6);
 }
 
 .video-background {
@@ -34,7 +86,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 1;
   background: rgba(0, 0, 0, 0.75);
 }
@@ -58,5 +110,30 @@
   .video-foreground {
     width: 300%;
     left: -100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .row {
+    flex-direction: row;
+  }
+
+  .row input,
+  .row label {
+    padding: 2%;
+  }
+
+  .apply label,
+  .apply input[type='submit'] {
+    flex: 1;
+  }
+
+  .apply input[type='submit'] {
+    margin: 2rem 0;
+    flex: 3;
+  }
+
+  .apply input[type='text'] {
+    margin-left: 1rem;
   }
 }
