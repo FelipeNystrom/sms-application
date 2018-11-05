@@ -34,7 +34,7 @@ class App extends Component {
       },
       body: JSON.stringify({ phoneNumber: phonenumberInput })
     };
-    fetch('http://localhost:7000/api/new/number', opts)
+    fetch('/api/new/number', opts)
       .then(res => {
         if (res.ok) {
           this.setState({
