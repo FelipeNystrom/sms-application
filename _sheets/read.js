@@ -12,7 +12,7 @@ if (NODE_ENV !== 'production') {
   };
 }
 
-module.exports = async phonenumber => {
+module.exports = async () => {
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
   await promisify(doc.useServiceAccountAuth)(credentials);
   const info = await promisify(doc.getInfo)();
@@ -22,9 +22,7 @@ module.exports = async phonenumber => {
     `sheet 1: ` + sheet.title + ` ` + sheet.rowCount + `x` + sheet.colCount
   );
 
-  const insertNewRow = {
-    telefonnummer: phonenumber
-  };
-  const insert = await promisify(sheet.addRow)(insertNewRow);
-  return insert;
+  const extract = await promisify(sheet.getRows)();
+  const numbers = extract.map(row => row.telefonnummer);
+  return numbers;
 };
