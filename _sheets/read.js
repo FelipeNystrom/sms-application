@@ -23,6 +23,13 @@ module.exports = async () => {
   );
 
   const extract = await promisify(sheet.getRows)();
-  const numbers = extract.map(row => row.telefonnummer);
+  const numbers = extract.map(row => {
+    return {
+      nummer: row.telefonnummer,
+      namn: row.namn
+    };
+  });
+
+  console.log(numbers);
   return numbers;
 };
