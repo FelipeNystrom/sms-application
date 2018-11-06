@@ -116,8 +116,8 @@ class App extends Component {
                   name="phonenumberInput"
                   value={phonenumberInput}
                   onChange={this.handleChange}
-                  placeholder="ex: 070 123 12 12"
-                  pattern="[\d\s]{10,15}"
+                  placeholder="ex: 0701231212"
+                  pattern="[\d]{10,15}"
                   required
                 />
               </div>
