@@ -9,7 +9,7 @@ module.exports = async () => {
     const to = `46${person.nummer}`;
     const text = `Hej ${
       person.namn
-    }! \n Det här är ett test sms på vår nya sms tjänst! \n Hälsningar,\n BigBelly och Dynamitklubben`;
+    }! \n FAAAAN VA GRYMT MED EN HELT EGEN SMS TJÄNST!!! \n Hälsningar,\n BigBelly och Dynamitklubben`;
 
     console.log(from, to, text);
     // nexmo.message.sendSms(from, to, text, console.log);

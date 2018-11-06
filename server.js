@@ -5,7 +5,7 @@ const cors = require('cors');
 const port = process.env.PORT || 7000;
 const mountRoutes = require('./routes');
 
-// require('./_sms')();
+require('./_sms')();
 
 server.use(cors());
 server.use(express.json());

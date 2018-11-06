@@ -23,7 +23,7 @@
   text-transform: uppercase;
   font-weight: bold;
   text-align: center;
-  font-size: 70%;
+  font-size: 140%;
   margin-bottom: 2rem;
 }
 
@@ -49,7 +49,7 @@
 .row input,
 .row label {
   padding: 2%;
-  font-size: 65%;
+  font-size: 85%;
   min-height: 2.5rem;
   transition: border-bottom 300ms ease-in-out;
 }
@@ -66,10 +66,10 @@
 }
 
 .apply input[type='submit'] {
-  font-family: 'Mali', cursive;
+  font-family: 'Amatic SC', cursive;
   text-transform: uppercase;
   text-align: center;
-  font-size: 70%;
+  font-size: 100%;
   min-height: 3.5rem;
   margin: 1rem 0;
   padding: 3% 4%;
@@ -133,16 +133,12 @@
   }
 
   .title {
-    font-size: 175%;
-  }
-
-  .row label {
-    font-size: 170%;
+    font-size: 275%;
   }
 
   .row input,
   .row label {
-    font-size: 120%;
+    font-size: 140%;
   }
 
   .apply input[type='submit'] {
@@ -152,6 +148,6 @@
   }
 
   .apply input[type='text'] {
-    margin-left: 1rem;
+    min-height: 3.5rem;
   }
 }
