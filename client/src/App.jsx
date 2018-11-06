@@ -35,7 +35,7 @@ class App extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        phoneNumber: phonenumberInput,
+        phoneNumber: phonenumberInput.trim(),
         name: nameInput.trim()
       })
     };
@@ -103,6 +103,7 @@ class App extends Component {
                   value={nameInput}
                   onChange={this.handleChange}
                   pattern="[a-zA-ZäöåÄÖÅ\s]{2,}"
+                  placeholder="John Doe"
                   required
                 />
               </div>
@@ -113,6 +114,7 @@ class App extends Component {
                   name="phonenumberInput"
                   value={phonenumberInput}
                   onChange={this.handleChange}
+                  placeholder="ex: 070 123 12 12"
                   pattern="[\d\s]{10,15}"
                   required
                 />

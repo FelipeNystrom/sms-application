@@ -12,7 +12,7 @@ if (NODE_ENV !== 'production') {
   };
 }
 
-module.exports = async phonenumber => {
+module.exports = async (phonenumber, name) => {
   const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
   await promisify(doc.useServiceAccountAuth)(credentials);
   const info = await promisify(doc.getInfo)();
@@ -23,7 +23,8 @@ module.exports = async phonenumber => {
   );
 
   const insertNewRow = {
-    telefonnummer: phonenumber
+    telefonnummer: phonenumber,
+    namn: name
   };
   const insert = await promisify(sheet.addRow)(insertNewRow);
   return insert;

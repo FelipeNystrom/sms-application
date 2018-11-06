@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import './Modal.css';
 
 class Modal extends Component {
-  componentDidUpdate() {
-    console.log(this.props);
-  }
-
   handleClick = e => {
     e.preventDefault();
 
