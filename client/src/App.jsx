@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import YouTube from 'react-youtube';
-import Modal from './Modal';
+import Modal from './Modal.jsx';
 import './App.css';
 class App extends Component {
   state = {
@@ -44,6 +44,7 @@ class App extends Component {
         if (res.ok) {
           this.setState({
             phonenumberInput: '',
+            nameInput: '',
             successMsg:
               'Tack för din anmälan! Du kommer få ett sms av oss när det är dags!',
             show: true
@@ -54,6 +55,7 @@ class App extends Component {
         console.error(err);
         this.setState({
           phonenumberInput: '',
+          nameInput: '',
           errorMsg: 'Ojdå! Något har gått fel. Prova igen!',
           show: true
         });
