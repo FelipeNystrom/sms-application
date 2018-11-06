@@ -74,7 +74,7 @@
   margin: 1rem 0;
   padding: 3% 4%;
   border: 0.1rem solid hsla(0, 0%, 100%, 0.8);
-  transition: background-color 400ms ease-in-out;
+  transition: all 400ms ease-in-out;
   font-weight: bold;
 }
 
