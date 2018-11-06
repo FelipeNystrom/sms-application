@@ -1,11 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import YouTube from 'react-youtube';
+import Modal from './Modal';
 import './App.css';
-
 class App extends Component {
   state = {
     phonenumberInput: '',
+    nameInput: '',
     loading: false,
+    show: false,
     errorMsg: '',
     successMsg: ''
   };
@@ -26,13 +28,16 @@ class App extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { phonenumberInput } = this.state;
+    const { phonenumberInput, nameInput } = this.state;
     const opts = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ phoneNumber: phonenumberInput })
+      body: JSON.stringify({
+        phoneNumber: phonenumberInput,
+        name: nameInput.trim()
+      })
     };
     fetch('/api/new/number', opts)
       .then(res => {
@@ -40,14 +45,23 @@ class App extends Component {
           this.setState({
             phonenumberInput: '',
             successMsg:
-              'Tack för din anmälan! Du kommer få ett sms av oss när det är dags!'
+              'Tack för din anmälan! Du kommer få ett sms av oss när det är dags!',
+            show: true
           });
         }
       })
       .catch(err => {
         console.error(err);
-        this.setState({ errorMsg: 'Ojdå! Något har gått fel. Prova igen!' });
+        this.setState({
+          phonenumberInput: '',
+          errorMsg: 'Ojdå! Något har gått fel. Prova igen!',
+          show: true
+        });
       });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
   };
 
   render() {
@@ -60,15 +74,37 @@ class App extends Component {
       }
     };
 
-    const { phonenumberInput } = this.state;
+    const {
+      phonenumberInput,
+      nameInput,
+      show,
+      successMsg,
+      errorMsg
+    } = this.state;
 
     return (
       <Fragment>
         <div className="wrapper">
+          <Modal
+            hideModal={this.hideModal}
+            successMsg={successMsg}
+            errorMsg={errorMsg}
+            show={show}
+          />
           <div className="content">
             <div className="title">Välkommen till den hemliga festen</div>
 
             <form className="apply" onSubmit={this.handleSubmit}>
+              <div className="row">
+                <label>Namn:</label>
+                <input
+                  type="text"
+                  name="nameInput"
+                  value={nameInput}
+                  onChange={this.handleChange}
+                  pattern="[a-zA-ZäöåÄÖÅ\s]{2,}"
+                />
+              </div>
               <div className="row">
                 <label>Telefonnummer:</label>
                 <input
@@ -76,7 +112,7 @@ class App extends Component {
                   name="phonenumberInput"
                   value={phonenumberInput}
                   onChange={this.handleChange}
-                  pattern="\d{10,11}"
+                  pattern="[\d\s]{10,15}"
                 />
               </div>
               <input type="submit" value="anmäl mig" />

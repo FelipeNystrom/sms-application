@@ -8,8 +8,6 @@ module.exports = async () => {
     const from = 'bbdk';
     const to = `46${number}`;
     const text = 'det här är det första vi skickar som prov';
-    console.log(from, to, text);
+    nexmo.message.sendSms(from, to, text, console.log);
   });
 };
-
-// nexmo.message.sendSms(from, to, text, console.log);
