@@ -103,6 +103,7 @@ class App extends Component {
                   value={nameInput}
                   onChange={this.handleChange}
                   pattern="[a-zA-ZäöåÄÖÅ\s]{2,}"
+                  required
                 />
               </div>
               <div className="row">
@@ -113,6 +114,7 @@ class App extends Component {
                   value={phonenumberInput}
                   onChange={this.handleChange}
                   pattern="[\d\s]{10,15}"
+                  required
                 />
               </div>
               <input type="submit" value="anmäl mig" />

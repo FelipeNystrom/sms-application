@@ -7,7 +7,7 @@ module.exports = router;
 router.post('/new/number', async (req, res) => {
   console.log(req.body);
   const { phoneNumber } = req.body;
-  if (/\d{10,11}/.test(phoneNumber)) {
+  if (/[\d\s]{10,15}/.test(phoneNumber)) {
     try {
       const result = await writeNumber(phoneNumber);
       res.sendStatus(200);
